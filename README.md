@@ -1,4 +1,4 @@
-# Groupe 5 - Base de données et backend
+# Groupe 5 - Application centrale
 
 ## Objectifs
 
