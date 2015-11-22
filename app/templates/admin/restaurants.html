@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+	{% if connected %}
+
+		<h1 class="ui header">Admin</h1>
+
+		<div style="width: 33%; margin: 0 auto;" class="ui center raised very padded text container segment">
+			<form class="ui form" action="/admin/ajouter" method="post">
+				<h4 class="ui dividing header">Ajouter un restaurant</h4>
+		  		<div class="field">
+		      		<input type="text" name="nom" id="nom" placeholder="Nom">
+		    	</div>
+		    	<div class="field">
+		      		<input type="text" name="adresse" id="adresse" placeholder="Adresse">
+		    	</div>
+		    	<div class="field">
+		      		<input type="text" name="capacite" id="capacite" placeholder="Capacité">
+		    	</div>
+		    	<div class="field">
+		      		<input type="password" name="mdp" id="mdp" placeholder="Mot de passe">
+		    	</div>
+		    	<div class="field">
+		      		<input type="text" name="lat" id="lat" placeholder="Latitude">
+		    	</div>
+		    	<div class="field">
+		      		<input type="text" name="lon" id="lon" placeholder="Longitude">
+		    	</div>
+		    	<div class="two fields">
+		    		<p>Lundi</p>
+				    <div class="field">
+				      	<input placeholder="Ouverture lundi" name="o1" id="o1" type="text">
+				    </div>
+				    <div class="field">
+				      	<input placeholder="Fermeture lundi" name="f1" id="f1" type="text">
+				    </div>
+				    <p>Mardi</p>
+				    <div class="field">
+				      	<input placeholder="Ouverture mardi" name="o2" id="o2" type="text">
+				    </div>
+				    <div class="field">
+				      	<input placeholder="Fermeture mardi" name="f2" id="f2" type="text">
+				    </div>
+				    <p>Mercredi</p>
+				    <div class="field">
+				      	<input placeholder="Ouverture mercredi" name="o3" id="o3" type="text">
+				    </div>
+				    <div class="field">
+				      	<input placeholder="Fermeture mercredi" name="f3" id="f3" type="text">
+				    </div>
+				    <p>Jeudi</p>
+				    <div class="field">
+				      	<input placeholder="Ouverture jeudi" name="o4" id="o4" type="text">
+				    </div>
+				    <div class="field">
+				      	<input placeholder="Fermeture jeudi" name="f4" id="f4" type="text">
+				    </div>
+				    <p>Vendredi</p>
+				    <div class="field">
+				      	<input placeholder="Ouverture vendredi" name="o5" id="o5" type="text">
+				    </div>
+				    <div class="field">
+				      	<input placeholder="Fermeture vendredi" name="f5" id="f5" type="text">
+				    </div>
+				    <p>Samedi</p>
+				    <div class="field">
+				      	<input placeholder="Ouverture samedi" name="o6" id="o6" type="text">
+				    </div>
+				    <div class="field">
+				      	<input placeholder="Fermeture samedi" name="f6" id="f6" type="text">
+				    </div>
+				    <p>Dimanche</p>
+				    <div class="field">
+				      	<input placeholder="Ouverture dimanche" name="o7" id="o7" type="text">
+				    </div>
+				    <div class="field">
+				      	<input placeholder="Fermeture dimanche" name="f7" id="f7" type="text">
+				    </div>
+				 </div>
+		    	<button class="ui primary button" type="submit">Valider</button>
+			</form>
+		</div>
+
+		<h1 class="ui header">Restaurants</h1>
+
+		<table class="ui definition table">
+		  	<thead>
+		    	<tr><th></th>
+		    	<th>Adresse</th>
+		  		</tr>
+		  	</thead>
+		  	<tbody>
+		  		{% for restaurant in restaurants %}
+		    	<tr>
+		    		<td>{{ restaurant.nom }}</td>
+		    		<td>{{ restaurant.adresse }}</td>
+		    	</tr>
+		    	{% endfor %}
+			</tbody>
+		</table>
+
+	{% else %}
+
+		<h1 class="ui header">Vous n'avez pas accès à cette page!</h1>
+
+	{% endif %}
+
+{% endblock %}

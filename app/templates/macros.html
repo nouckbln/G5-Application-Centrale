@@ -1,0 +1,10 @@
+{# myapp/templates/macros.html #}
+
+<!-- Macro pour highlighter l'onglet courant -->
+{% macro nav_link(endpoint, text) %}
+	{% if request.endpoint.endswith(endpoint) %}
+	    <a class="active teal item" href="{{ url_for(endpoint) }}">{{ text }}</a>
+	{% else %}
+	    <a class="item" href="{{ url_for(endpoint) }}">{{ text }}</a>
+	{% endif %}
+{% endmacro %}

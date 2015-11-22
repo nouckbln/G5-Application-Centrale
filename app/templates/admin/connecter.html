@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+
+	<div style="width: 33%; margin: 0 auto; margin-top: 10%" class="ui center raised very padded text container segment">
+		<form class="ui form" action="/admin/connecter" method="post">
+			<h4 class="ui dividing header">Complétez les champs pour vous connecter</h4>
+		  	<div class="field">
+		    	<input type="password" name="mdp" id="mdp" placeholder="Mot de passe"/>
+		  	</div>
+		  	<button class="ui primary button" type="submit">Valider</button>
+		</form>
+	</div>
+
+{% endblock %}
