@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+	<div class="ui formulaire-utilisateur center raised very padded text container segment">
+		<form class="ui form" action="/utilisateur/enregistrement" method="post">
+			<h4 class="ui dividing header">S'enregistrer</h4>
+	    	{{ m.render_field(form.prenom) }}
+	    	{{ m.render_field(form.nom) }}
+	    	{{ m.render_field(form.numero) }}
+	    	{{ m.render_field(form.email) }}
+	    	{{ m.render_field(form.mdp) }}
+	    	{{ m.render_field(form.confirmation) }}
+		  	{{ form.csrf_token }}
+		  	<button class="ui primary button" type="submit">Valider</button>
+		</form>
+	</div>
+
+{% endblock %}
