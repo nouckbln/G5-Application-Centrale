@@ -5,6 +5,11 @@
 - De nombreuses données devront être intelligemment gérées pour optimiser le travail des autres groupes. Nous devrons stocker les informations relatives:
   - aux différents conducteurs.
   - aux demandes de courses (prix, lieu, trajet, temps, …).
+- Création d’une interface centrale :
+  - Page centrale (formulaire) de multi requetage (recherche par client, par conducteur, par véhicule, etc)
+  - Page de modification : ajouter/supprimer des conducteurs, véhicules, etc … (+ trigger PL/SQL)
+  - Carte de géolocalisation de tous les taxis
+  - Toutes les courses en attente
 
 Il faudra stocker les demandes de courses dans une table temporaire grâce aux données récupérées par le groupe 3. Le groupe 6 aura pour objectif de vider cette table.
 
