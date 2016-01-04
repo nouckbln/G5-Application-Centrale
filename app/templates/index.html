@@ -1,11 +1,98 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} 
+{% block head %} 
+	{{ super() }} 
 
-{% block head %}
-    {{ super() }}
-{% endblock %}
+<script language='javascript'>
+ $(document).ready(function(){
+    $('.cookie.nag')
+      .nag({
+        key      : 'accepts-cookies',
+        value    : true
+      })
+    ;
+ });
+</script>
+
+<div class="ui inline cookie nag">
+  <span class="title">
+    En poursuivant votre navigation sur ce site, vous acceptez l’utilisation de cookies.
+  </span>
+  <i class="close icon"></i>
+</div>
+
+{% endblock %} 
 
 {% block content %}
 
-	<h1 class="ui header">{{ titre }}</h1>
+<h1 class="ui header">{{ titre }}</h1> 
+{% if current_user.is_authenticated %}
+	<h2 class="ui header">Bonjour {{ current_user.prenom }}!</h2> 
+{% endif %} 
+{% if current_user.is_authenticated %}
+	<h3 class="ui header">Utilisateur connecté.</h3> 
+{% else %}
+	<h3 class="ui header">Utilisateur non-connecté.</h3> 
+{% endif %}
 
+
+<div class="ui centered grid">
+    <div class="left floated ten wide column">
+        <form class="ui form">
+            <h4 class="ui pink dividing header">Réservation</h4>
+            <div class="field">
+                <label>Vos coordonnées</label>
+                <div class="two fields">
+                    <div class="field">
+                        <input type="text" name="shipping[last-name]" placeholder="Nom">
+                    </div>
+                    <div class="field">
+                        <input type="text" name="shipping[first-name]" placeholder="Prénom">
+                    </div>
+                </div>
+            </div>
+            <div class="two fields">
+            	<div class="four wide field">
+                        <input type="text" name="shipping[telephone]" placeholder="N° Téléphone">
+                </div>
+                <div class="eight wide field">
+                        <input type="text" name="shipping[email]" placeholder="Email">
+                </div>
+            </div>
+            <div class="field">
+                <label>Trajet</label>
+                <div class="two fields">
+                    <div class="field">
+                        <input type="text" name="shipping[depart]" placeholder="Lieu de départ">
+                    </div>
+                    <div class="field">
+                        <input type="text" name="shipping[arrivee]" placeholder="Lieu d'arrivée">
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+            	<label>Type de véhicule</label>
+				<select class="ui dropdown">
+				<option value="">Indéférent</option>
+				<option value="Berline">Berline</option>
+				<option value="Break">Break</option>
+				<option value="Monospace">Monospace</option>
+				</select>
+			</div>
+        </form>
+    </div>
+    <div class="right floated six wide column">
+        <div class="ui card">
+            <div class="content">
+                <div class="header">CapitoleTAXI</div>
+                <div class="meta"><i class="phone square icon"></i>05 34 250 250</div>
+                <div class="description">
+                    <p>170 taxis, le plus grand groupe de Toulouse et Midi-Pyrénées</p>
+                </div>
+            </div>
+            <div class="extra content">
+                <i class="pink taxi icon"></i> 170 taxis
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -14,9 +14,9 @@
 {% endmacro %}
 
 <!-- Générer un form avec WTForms (et ses erreurs) -->
-{% macro render_field(field) %}
+{% macro render_field(field, userAuthInfo) %}
 	<div class="field">
-		{{ field(name_=field.name, id=field.name, placeholder=field.description, class_="field") }}
+		{{ field(name_=field.name, id=field.name, placeholder=field.description, class_="field", value=userAuthInfo) }}
 	</div>
   	{% if field.errors %}
     	<ul>

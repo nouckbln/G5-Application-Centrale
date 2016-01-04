@@ -5,8 +5,8 @@ ADMIN_CREDENTIALS = ('admin', 'pa$$')
 # DEBUG doit être False en production par souçi de sécurité
 DEBUG = True
 # Détail de la connexion à PostgreSQL
-#SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:houdini@localhost/taxisid'
-SQLALCHEMY_DATABASE_URI = 'sqlite:///app.db'
+SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:houdini@localhost:5433/taxisid'
+#SQLALCHEMY_DATABASE_URI = 'sqlite:///app.db'
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 # Configuration du serveur gmail pour envoyer des mails
 MAIL_SERVER = 'smtp.googlemail.com'

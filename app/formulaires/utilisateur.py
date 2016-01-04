@@ -63,20 +63,44 @@ class Enregistrement(Form):
 
     ''' Enregistrement. '''
 
+    prenom = TextField(
+        validators=[Required(), Length(min=2)], description='Prénom')
+    nom = TextField(validators=[Required(), Length(min=2)], description='Nom')
+    telephone = TextField(validators=[Required(), Length(min=6),
+                                      Unique(Utilisateur, Utilisateur.telephone, 'Ce numéro de téléphone est déjà lié à un compte.')],
+                          description='Numéro de téléphone')
+    email = TextField(validators=[Required(), Email(),
+                                  Unique(Utilisateur, Utilisateur.email, 'Cette adresse email est déjà liée à un compte.')],
+                      description='Adresse email')
+
+    ville = TextField(description='Ville')
+    cp = TextField(description='Code postal')
+    adresse = TextField(description='Adresse')
+    numero = TextField(description='Numéro')
+
+    mdp = PasswordField(validators=[
+        Required(), Length(min=6),
+        EqualTo('confirmation', message='Les mots de passe doivent être identiques.')
+    ], description='Mot de passe')
+    confirmation = PasswordField(description='Confirmer le mot de passe')
+
+
+class Modification(Form):
+
+    ''' Edition des données de l'utilisateur. '''
+
     prenom = TextField(validators=[Required(), Length(min=2)],
                        description='Prénom')
     nom = TextField(validators=[Required(), Length(min=2)],
                     description='Nom')
-    numero = TextField(validators=[Required(), Length(min=6)],
-                       description='Numéro de téléphone')
-    email = TextField(validators=[Required(), Email(),
-                                  Unique(Utilisateur, Utilisateur.email,
-                                         'Cette adresse email est déjà ' +
-                                         'liée à un compte.')],
-                      description='Adresse email')
-    mdp = PasswordField(validators=[
-        Required(), Length(min=6),
-        EqualTo('confirmation',
-                message='Les mots de passe doivent être identiques.')
-    ], description='Mot de passe')
-    confirmation = PasswordField(description='Confirmer le mot de passe')
+    telephone = TextField(validators=[Required(), Length(min=6)],
+                          description='Numéro de téléphone')
+
+
+def to_dict(model_instance, query_instance=None):
+    ''' Transforme un objet SQLAlchemy en dictionnaire '''
+    if hasattr(model_instance, '__table__'):
+        return {c.name: str(getattr(model_instance, c.name)) for c in model_instance.__table__.columns}
+    else:
+        cols = query_instance.column_descriptions
+        return {cols[i]['name']: model_instance[i] for i in range(len(cols))}
